@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Santander",
+    "slug": "rn-clone-santander-app",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ec0000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "br.com.alexsouzasilvax.rn_clone_santander_app"
+    }
+  }
+}
