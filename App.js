@@ -8,11 +8,14 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  Platform
 } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconIonicons from "react-native-vector-icons/Ionicons";
 import IconSimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import IconEntypo from "react-native-vector-icons/Entypo";
+import IconAntDesign from "react-native-vector-icons/AntDesign";
+import IconMaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import icon from "./assets/santander.png";
 
 export default function App() {
@@ -100,58 +103,64 @@ export default function App() {
             </View>
           </TouchableOpacity>
         ) : (
-          <View style={[styles.cardNotificacao, styles.cardSaldo2]}>
-            <TouchableOpacity
-              style={[styles.cardSaldo, { marginTop: 0 }]}
-              onPress={() => setVisibleSaldo(!visibleSaldo)}
-            >
-              <View style={[styles.flexDirectionRow, styles.viewCardSaldo]}>
-                <View style={styles.viewIconLeftCardSaldo}>
-                  <IconEntypo
-                    name={"credit"}
-                    size={18}
-                    style={styles.iconLeftCardSaldo}
-                  />
-                </View>
+            <View style={[styles.cardNotificacao, styles.cardSaldo2]}>
+              <TouchableOpacity
+                style={[styles.cardSaldo, { marginTop: 0 }]}
+                onPress={() => setVisibleSaldo(!visibleSaldo)}
+              >
+                <View style={[styles.flexDirectionRow, styles.viewCardSaldo]}>
+                  <View style={styles.viewIconLeftCardSaldo}>
+                    <IconEntypo
+                      name={"credit"}
+                      size={18}
+                      style={styles.iconLeftCardSaldo}
+                    />
+                  </View>
 
-                <View style={styles.viewTextCardSaldo}>
-                  <Text style={styles.textCardSaldo}>Saldo disponível</Text>
-                </View>
+                  <View style={styles.viewTextCardSaldo}>
+                    <Text style={styles.textCardSaldo}>Saldo disponível</Text>
+                  </View>
 
-                <View style={styles.viewIconRigthCardSaldo}>
-                  <IconEntypo
-                    name={"chevron-thin-up"}
-                    size={20}
-                    style={styles.iconRigthCardSaldo}
-                  />
+                  <View style={styles.viewIconRigthCardSaldo}>
+                    <IconEntypo
+                      name={"chevron-thin-up"}
+                      size={20}
+                      style={styles.iconRigthCardSaldo}
+                    />
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
-            <Text style={styles.textSaldo}>R$ 120.900,97</Text>
-            <Text style={styles.textSaldoLimite}>Saldo + Limite:</Text>
-            <Text style={[styles.textSaldoLimite, styles.textValorSaldoLimite]}>
-              R$ 250.000,00
+              </TouchableOpacity>
+              <Text style={styles.textSaldo}>R$ 120.900,97</Text>
+              <Text style={styles.textSaldoLimite}>Saldo + Limite:</Text>
+              <Text style={[styles.textSaldoLimite, styles.textValorSaldoLimite]}>
+                R$ 250.000,00
             </Text>
-            <View style={styles.divisao} />
-            <TouchableOpacity onPress={() => {}} style={styles.btnVerExtrato}>
-              <Text style={styles.textBtnVerExtrato}>Ver extrato</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+              <View style={styles.divisao} />
+              <TouchableOpacity onPress={() => { }} style={styles.btnVerExtrato}>
+                <Text style={styles.textBtnVerExtrato}>Ver extrato</Text>
+              </TouchableOpacity>
+            </View>
+          )}
 
         {/* cardOpcoes */}
         <View style={[styles.flexDirectionRow, styles.cardOpcoes]}>
           {/*Pagar*/}
-          <View style={styles.viewCardOpcoes}>
-            <IconFontAwesome name={"home"} color={"red"} />
-            <Text>Pagar</Text>
-          </View>
+          <TouchableOpacity style={styles.viewCardOpcoes}>
+            <IconEntypo name={"menu"} color={"#ec0000"} size={25} />
+            <Text style={styles.textCardOpcoes}>Pagar</Text>
+          </TouchableOpacity>
 
           {/*Transferir*/}
-          <View style={styles.viewCardOpcoes}></View>
+          <TouchableOpacity style={styles.viewCardOpcoes}>
+            <IconAntDesign name={"retweet"} color={"#ec0000"} size={25} />
+            <Text style={styles.textCardOpcoes}>Transferir</Text>
+          </TouchableOpacity>
 
           {/*Recarregar*/}
-          <View style={styles.viewCardOpcoes}></View>
+          <TouchableOpacity style={styles.viewCardOpcoes}>
+            <IconMaterialCommunityIcons name={"cellphone-arrow-down"} color={"#ec0000"} size={25} />
+            <Text style={styles.textCardOpcoes}>Recarga</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -176,6 +185,14 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     alignSelf: "center",
+    ...Platform.select({
+      ios: {
+        // backgroundColor: 'red',
+      },
+      android: {
+        marginTop: 4
+      },
+    }),
   },
   textSantander: {
     marginTop: 5,
@@ -186,7 +203,14 @@ const styles = StyleSheet.create({
   },
   iconSino: {
     color: "#F3F3F3",
-    paddingTop: 8,
+    ...Platform.select({
+      ios: {
+        paddingTop: 8,
+      },
+      android: {
+        paddingTop: 13,
+      },
+    }),
   },
   flexDirectionRow: {
     flexDirection: "row",
@@ -272,7 +296,14 @@ const styles = StyleSheet.create({
   },
   cardSaldo2: {
     marginTop: 30,
-    height: 220,
+    ...Platform.select({
+      ios: {
+        height: 220,
+      },
+      android: {
+        height: 235,
+      },
+    }),
   },
   viewCardSaldo: {
     flex: 1,
@@ -340,9 +371,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: 150,
-    height: 110,
-    backgroundColor: "#444",
+    height: 100,
     margin: 5,
     flex: 1,
+    // doideira
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: "#e6e6e6",
+    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderRightWidth: 0.5,
+    borderLeftWidth: 0.5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 1,
+
   },
+  textCardOpcoes: {
+    color: "#696969",
+    fontSize: 15,
+    fontWeight: '500',
+    paddingTop: 5
+  }
 });
