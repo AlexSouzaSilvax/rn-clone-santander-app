@@ -32,8 +32,9 @@ export default function App() {
                 style={styles.iconSino}
               />
             </TouchableOpacity>
-            <View style={styles.viewIconCenter}>
+            <View style={[styles.viewIconCenter, styles.flexDirectionRow]}>
               <Image source={icon} style={styles.iconSantander} />
+              <Text style={styles.textSantander}>Santander</Text>
             </View>
             <TouchableOpacity style={styles.btnIconRigth}>
               <IconIonicons
@@ -127,12 +128,31 @@ export default function App() {
               </View>
             </TouchableOpacity>
             <Text style={styles.textSaldo}>R$ 120.900,97</Text>
+            <Text style={styles.textSaldoLimite}>Saldo + Limite:</Text>
+            <Text style={[styles.textSaldoLimite, styles.textValorSaldoLimite]}>
+              R$ 250.000,00
+            </Text>
             <View style={styles.divisao} />
             <TouchableOpacity onPress={() => {}} style={styles.btnVerExtrato}>
               <Text style={styles.textBtnVerExtrato}>Ver extrato</Text>
             </TouchableOpacity>
           </View>
         )}
+
+        {/* cardOpcoes */}
+        <View style={[styles.flexDirectionRow, styles.cardOpcoes]}>
+          {/*Pagar*/}
+          <View style={styles.viewCardOpcoes}>
+            <IconFontAwesome name={"home"} color={"red"} />
+            <Text>Pagar</Text>
+          </View>
+
+          {/*Transferir*/}
+          <View style={styles.viewCardOpcoes}></View>
+
+          {/*Recarregar*/}
+          <View style={styles.viewCardOpcoes}></View>
+        </View>
       </ScrollView>
     </View>
   );
@@ -152,10 +172,17 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   iconSantander: {
-    left: 5,
+    right: 65,
     width: 30,
     height: 30,
     alignSelf: "center",
+  },
+  textSantander: {
+    marginTop: 5,
+    right: 55,
+    color: "white",
+    fontSize: 20,
+    fontWeight: "600",
   },
   iconSino: {
     color: "#F3F3F3",
@@ -165,6 +192,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   btnIconLeft: {
+    flex: 1,
     alignSelf: "flex-start",
     paddingStart: 18,
   },
@@ -244,7 +272,7 @@ const styles = StyleSheet.create({
   },
   cardSaldo2: {
     marginTop: 30,
-    height: 160,
+    height: 220,
   },
   viewCardSaldo: {
     flex: 1,
@@ -274,8 +302,20 @@ const styles = StyleSheet.create({
     paddingStart: 20,
     paddingTop: 15,
   },
+  textSaldoLimite: {
+    fontSize: 17,
+    color: "#444",
+    fontWeight: "400",
+    paddingStart: 21,
+    paddingTop: 8,
+  },
+  textValorSaldoLimite: {
+    fontSize: 15,
+    paddingTop: 1,
+    paddingStart: 22,
+  },
   divisao: {
-    marginTop: 25,
+    marginTop: 35,
     alignSelf: "center",
     width: "90%",
     backgroundColor: "#b0b0b0",
@@ -286,8 +326,23 @@ const styles = StyleSheet.create({
     height: 40,
   },
   textBtnVerExtrato: {
-    paddingTop: 12,
+    paddingTop: 15,
     fontSize: 16,
     color: "#ec0000",
+  },
+  cardOpcoes: {
+    marginTop: 30,
+    width: Dimensions.get("screen").width - 20,
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+  viewCardOpcoes: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 150,
+    height: 110,
+    backgroundColor: "#444",
+    margin: 5,
+    flex: 1,
   },
 });
