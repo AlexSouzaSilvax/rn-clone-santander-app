@@ -130,10 +130,10 @@ export default function App() {
                   </View>
                 </View>
               </TouchableOpacity>
-              <Text style={styles.textSaldo}>R$ 120.900,97</Text>
+              <Text style={styles.textSaldo}>R$ 391.542,29</Text>
               <Text style={styles.textSaldoLimite}>Saldo + Limite:</Text>
               <Text style={[styles.textSaldoLimite, styles.textValorSaldoLimite]}>
-                R$ 250.000,00
+                R$ 950.000,00
             </Text>
               <View style={styles.divisao} />
               <TouchableOpacity onPress={() => { }} style={styles.btnVerExtrato}>
